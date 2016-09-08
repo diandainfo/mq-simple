@@ -1,6 +1,6 @@
 {
   "name": "mq-simple",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "基于amqlib封装的简单rabbit-mq模块。提供短线重连机制和并发限制",
   "main": "index.js",
   "directories": {
