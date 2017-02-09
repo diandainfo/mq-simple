@@ -1,10 +1,10 @@
 var config = {
-        host: '192.168.1.101',
+        host: '192.168.1.101:5674',
         account: 'guest',
         password: 'guest'
     },
     options = {
-        queueName: 'test',
+        queueName: 'test-queue',
         prefetchCount: 1
     },
     Queue = require('./index').Queue,
@@ -14,5 +14,11 @@ var queue = new Queue(config, options);
 setInterval(function () {
     i++;
     console.log(i);
-    queue.sendToQueue(i);
+    queue.sendToQueue(i)
+        .then(function(e) {
+            console.log(e);
+        })
+        .catch(function(e) {
+            console.log(e);
+        })
 }, 500);

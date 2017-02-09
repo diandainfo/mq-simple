@@ -1,4 +1,7 @@
 # mq-simple
+
+# 注意：队列，交换需要先建好，本module不会建立队列
+
 #安装
 ~~~ shell
     npm install mq-simple --save
@@ -18,7 +21,7 @@ var options={
     queueName: 'test-test-test'
 };
 
-// 创建队列队列
+// 连接队列
 var queue = new Queue(mqConfig, options);
 
 // 发送消息

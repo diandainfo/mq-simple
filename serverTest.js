@@ -1,19 +1,27 @@
 var config = {
-        host: '192.168.1.101',
+        host: '192.168.1.101:5674',
         account: 'guest',
         password: 'guest'
     },
     options = {
-        queueName: 'test',
-        prefetchCount: 1
+        queueName: 'test-queue',
+        prefetchCount: 10
     },
-    Queue = require('./index').Queue;
+    Queue = require('./index').Queue,
+    Promise=require('bluebird');
 var queue = new Queue(config, options);
 
 queue.consume(function (content, message) {
-    console.log(content);
-    queue.ack(message)
-        .catch(function () {
-            console.error('ACK错误');
+    Promise.resolve()
+        .then(function(){
+            console.log(content);
+            queue.ack(message)
+                .catch(function (error) {
+                    console.error('ACK错误');
+                });
         });
+
 });
+setInterval(function() {
+    console.log('queue._status:', queue._status)
+}, 1000);

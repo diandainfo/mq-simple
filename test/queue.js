@@ -1,11 +1,11 @@
 var should = require('should'),
     config = {
-        host: '192.168.1.101',
+        host: '192.168.1.101:5674',
         account: 'guest',
         password: 'guest'
     },
     options = {
-        queueName: 'test',
+        queueName: 'test-queue',
         prefetchCount: 1
     },
     Queue = require('../index').Queue,
