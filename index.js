@@ -1,1 +1,2 @@
-module.exports=require('./lib/index.js');
+var mq = require('./lib/index.js');
+module.exports = mq;

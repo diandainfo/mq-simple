@@ -8,7 +8,7 @@ var config = {
         prefetchCount: 10
     },
     Queue = require('./index').Queue,
-    Promise=require('bluebird');
+    Promise = require('bluebird');
 var queue = new Queue(config, options);
 
 queue.consume(function (content, message) {

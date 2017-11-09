@@ -1,45 +1,46 @@
-var should = require('should'),
-    config = {
-        host: '192.168.1.101:5674',
-        account: 'guest',
-        password: 'guest'
+/* eslint-disable no-unused-vars */
+var should = require('should');
+var config = {
+    host: '192.168.1.101:5673',
+    account: 'guest',
+    password: 'guest'
+};
+var exchangeConfig = {
+    exchange: 'test.exchange',
+    type: 'direct',
+    options: {
+        durable: false
+    }
+};
+var queueAConfig = {
+    options: {
+        queueName: 'test-exchange-a',
+        prefetchCount: 1,
+        durable: false
     },
-    exchangeConfig = {
-        exchange: 'test.exchange',
-        type: 'direct',
-        options: {
-            durable: false
-        }
+    extraOptions: {
+        source: 'test-exchange',
+        pattern: ['test.exchange', 'c'],
+        exchangeType: 'direct'
+    }
+};
+var queueBConfig = {
+    options: {
+        queueName: 'test-exchange-b',
+        prefetchCount: 1,
+        durable: false
     },
-    queueAConfig = {
-        options: {
-            queueName: 'test-exchange-a',
-            prefetchCount: 1,
-            durable: false
-        },
-        extraOptions: {
-            source: 'test-exchange',
-            pattern: ['test.exchange', 'c'],
-            exchangeType: 'direct'
-        }
-    },
-    queueBConfig = {
-        options: {
-            queueName: 'test-exchange-b',
-            prefetchCount: 1,
-            durable: false
-        },
-        extraOptions: {
-            source: 'test-exchange',
-            pattern: ['b'],
-            exchangeType: 'direct'
-        }
-    },
-    Queue = require('../index').Queue,
-    Exchange = require('../index').Exchange,
-    queueAMsg = 'a',
-    queueBMsg = 'b',
-    queueCMsg = 'c';
+    extraOptions: {
+        source: 'test-exchange',
+        pattern: ['b'],
+        exchangeType: 'direct'
+    }
+};
+var Queue = require('../index').Queue;
+var Exchange = require('../index').Exchange;
+var queueAMsg = 'a';
+var queueBMsg = 'b';
+var queueCMsg = 'c';
 
 describe('测试Mq相关功能', function () {
     describe('.sendToExchange', function () {
