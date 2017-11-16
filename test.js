@@ -6,6 +6,8 @@ let conn = new Connect({
     port: '5672',
     accont: 'guest',
     password: 'guest'
+}, {
+    prefetchCount: 1
 });
 
 let queue = new Queue('test', conn);
@@ -16,8 +18,8 @@ queue.consume(function (msg) {
         n++;
         setTimeout(() => {
             queue.ack(msg);
-        }, 1000);
-    })
+        }, 2000);
+    }, { noAck: false })
     .catch((error) => {
         console.log(error);
     })
